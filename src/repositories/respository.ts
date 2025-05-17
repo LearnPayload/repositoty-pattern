@@ -51,15 +51,12 @@ export abstract class BaseRepository<T> {
 
     return result
   }
-}
 
-export class PostsRepository extends BaseRepository<Post> implements PostsRepositoryInterface {
-  collection = 'posts' as CollectionSlug
   getOne = async (id: number) => {
     const payload = await this.client
 
     const post = await payload.findByID({
-      collection: 'posts',
+      collection: this.collection,
       id,
     })
 
@@ -70,7 +67,7 @@ export class PostsRepository extends BaseRepository<Post> implements PostsReposi
     const payload = await this.client
 
     const posts = await payload.find({
-      collection: 'posts',
+      collection: this.collection,
       page: params.page,
       limit: params.limit,
       sort: params.sort,
@@ -78,4 +75,8 @@ export class PostsRepository extends BaseRepository<Post> implements PostsReposi
 
     return posts.docs
   }
+}
+
+export class PostsRepository extends BaseRepository<Post> implements PostsRepositoryInterface {
+  collection = 'posts' as CollectionSlug
 }
