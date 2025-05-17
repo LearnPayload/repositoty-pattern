@@ -3,19 +3,18 @@ import { revalidatePath } from 'next/cache'
 
 export default async function PostsPage() {
   const posts = await db.posts.getMany()
-
-  const post = await db.posts.getOne(posts[0].id)
+  const users = await db.users.getMany()
 
   return (
     <div>
+      <pre>{JSON.stringify(users, null, 2)}</pre>
+
       {posts.map((post) => (
         <div key={post.id}>
           <h2>{post.title}</h2>
           <p>{post.content}</p>
         </div>
       ))}
-
-      <pre>{JSON.stringify(post, null, 2)}</pre>
 
       <button
         onClick={async () => {
