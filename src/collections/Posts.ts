@@ -11,5 +11,12 @@ export const Posts: CollectionConfig = {
       name: 'content',
       type: 'textarea',
     },
+    {
+      name: 'author',
+      type: 'relationship',
+      relationTo: 'users',
+      hasMany: false,
+      required: true,
+    },
   ],
 }

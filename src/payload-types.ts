@@ -159,6 +159,7 @@ export interface Post {
   id: number;
   title?: string | null;
   content?: string | null;
+  author: number | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -263,6 +264,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
+  author?: T;
   updatedAt?: T;
   createdAt?: T;
 }
